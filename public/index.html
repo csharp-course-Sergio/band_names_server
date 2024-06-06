@@ -22,9 +22,8 @@
             console.log('Perdimos comunicación con el servidor');
         });
 
-        socket.emit('message', { name: 'Sergio' });
 
-        socket.on('message', (payload) => {
+        socket.on('new-message', (payload) => {
             console.log('Listening: ', payload);
         })
 
