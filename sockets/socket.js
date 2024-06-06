@@ -8,9 +8,7 @@ io.on("connection", (client) => {
     console.log("Cliente desconectado");
   });
 
-  client.on("message", (payload) => {
-    console.log("Mensaje!!!!", payload);
-
-    io.emit("message", { admin: "Nuevo mensaje" });
+  client.on("emit-new-message", (payload) => {
+    client.broadcast.emit("new-message", payload);
   });
 });
