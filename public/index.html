@@ -27,6 +27,10 @@
             console.log('Listening: ', payload);
         })
 
+        socket.on('active-bands', (payload) => {
+            console.table(payload);
+        });
+
     </script>
 </body>
 
