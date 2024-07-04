@@ -22,15 +22,14 @@
             console.log('Perdimos comunicación con el servidor');
         });
 
-
         socket.on('new-message', (payload) => {
             console.log('Listening: ', payload);
         })
 
         socket.on('active-bands', (payload) => {
+            console.clear();
             console.table(payload);
         });
-
     </script>
 </body>
 

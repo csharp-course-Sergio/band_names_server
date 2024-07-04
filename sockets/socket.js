@@ -4,16 +4,16 @@ const Bands = require("../models/bands");
 
 const bands = new Bands();
 
-bands.addBand(new Band('Queen'));
-bands.addBand(new Band('Bon Jovi'));
-bands.addBand(new Band('Green Day'));
-bands.addBand(new Band('Keane'));
+bands.addBand(new Band("Queen"));
+bands.addBand(new Band("Bon Jovi"));
+bands.addBand(new Band("Green Day"));
+bands.addBand(new Band("Keane"));
 
 // Mensajes de Sockets
 io.on("connection", (client) => {
   console.log("Nuevo cliente conectado");
 
-client.emit('active-bands', bands.getBands());
+  client.emit("active-bands", bands.getBands());
 
   client.on("disconnect", () => {
     console.log("Cliente desconectado");
@@ -21,5 +21,10 @@ client.emit('active-bands', bands.getBands());
 
   client.on("emit-new-message", (payload) => {
     client.broadcast.emit("new-message", payload);
+  });
+
+  client.on("vote-band", (payload) => {
+    bands.voteBand(payload.id);
+    io.emit("active-bands", bands.getBands());
   });
 });

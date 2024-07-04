@@ -23,6 +23,8 @@ class Bands {
       if (band.id === id) {
         band.votes++;
         return band;
+      } else {
+        return band;
       }
     });
   }
